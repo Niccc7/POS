@@ -29,6 +29,19 @@ function tambah($data)
                 ";
     mysqli_query($conn, $query);
 
+    // cek error
+    if (mysqli_affected_rows($conn) < 1) {
+        return 0;  // gagal insert produk
+    }
+
+    // 2) ambil ID produk yang baru saja dibuat
+    $produkIdBaru = mysqli_insert_id($conn);
+
+    // 3) masukkan stok awal = 0
+    $Stok = "INSERT INTO stok (produkID, jumlah)
+                VALUES ($produkIdBaru, 0)";
+    mysqli_query($conn, $Stok);
+
     return mysqli_affected_rows($conn);
 }
 
