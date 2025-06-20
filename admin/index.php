@@ -25,7 +25,7 @@ require_once '../function.php';
             <a class="nav-link" href="index.php?menu=stock">Stock</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link disabled" href="index.php?menu=transaksi">Transaksi</a>
+            <a class="nav-link" href="index.php?menu=transaksi">Transaksi</a>
         </li>
     </ul>
     <hr>

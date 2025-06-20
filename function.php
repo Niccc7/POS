@@ -23,7 +23,7 @@ function tambah($data)
     $name = htmlspecialchars($data["nama_produk"]);
     $harga = htmlspecialchars($data["harga"]);
 
-    $query = "INSERT INTO produk (kodeProduk,nama_produk, harga)
+    $query = "INSERT INTO produk (kodeProduk,namaProduk, harga)
                 VALUES
                 ('$kode','$name', '$harga')
                 ";
@@ -47,7 +47,7 @@ function edit($data)
     $name = htmlspecialchars($data['nama_produk']);
     $harga = htmlspecialchars($data['harga']);
 
-    $query = "UPDATE produk SET kodeProduk = '$kode', nama_produk = '$name', harga = '$harga' WHERE produkID = $id";
+    $query = "UPDATE produk SET kodeProduk = '$kode', namaProduk = '$name', harga = '$harga' WHERE produkID = $id";
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);

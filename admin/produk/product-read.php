@@ -3,7 +3,7 @@ require_once '../function.php';
 $product = query("SELECT  
                             produk.kodeProduk,
                             produk.produkID,
-                            produk.nama_produk,
+                            produk.namaProduk,
                             produk.harga,
                             stok.jumlah
                         FROM 
@@ -27,7 +27,7 @@ $product = query("SELECT
                     <tr>
                         <th width="50">#</th>
                         <th width="200">Kode Produk</th>
-                        <th width="150">Name</th>
+                        <th width="150">Nama Produk</th>
                         <th width="150">Price</th>
                         <th width="50">Stock</th>
                         <th width="100">Action</th>
@@ -39,13 +39,13 @@ $product = query("SELECT
                     <tr>
                         <td><?= $no ?></td>
                         <td><?= $prd["kodeProduk"] ?></td>
-                        <td><?= $prd["nama_produk"] ?></td>
+                        <td><?= $prd["namaProduk"] ?></td>
                         <td><?= $prd["harga"] ?></td>
                         <td><?= $prd["jumlah"] ?></td>
                         <td>
                             <a href="#" class="btn-edit" data-id="<?= $prd["produkID"]; ?>" name="edit"
                                 data-kode-produk="<?= htmlspecialchars($prd["kodeProduk"]); ?>"
-                                data-nama-produk="<?= htmlspecialchars($prd["nama_produk"]); ?>"
+                                data-nama-produk="<?= htmlspecialchars($prd["namaProduk"]); ?>"
                                 data-harga="<?= $prd["harga"]; ?>" data-bs-toggle="modal" data-bs-target="#editData"
                                 style="cursor: pointer; text-decoration: none;">
                                 <span class="badge text-bg-warning">
