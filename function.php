@@ -1,9 +1,6 @@
 <?php
-
-$conn = mysqli_connect("localhost", "root", "", "pos");
-if (!$conn) {
-    die("koneksi gagal");
-}
+session_start();
+require_once "config.php";
 
 function query($query)
 {
