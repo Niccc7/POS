@@ -29,7 +29,7 @@ if ($user) {
 
         // Arahkan berdasarkan role
         if ($user['roles'] === 'admin') {
-            header("Location: dashboard_admin.php");
+            header("Location: dist/admin/index.php");
             exit;
         } elseif ($user['roles'] === 'kasir') {
             header("Location: dashboard_kasir.php");
