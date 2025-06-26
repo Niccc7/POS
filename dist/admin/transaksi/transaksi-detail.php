@@ -1,5 +1,5 @@
 <?php
-include '../../../function.php';
+include '../../config.php';
 
 $transaksiID = $_GET['id']; // ambil ID dari URL, contoh: detail.php?id=1
 
@@ -21,117 +21,76 @@ $queryDetail = mysqli_query($conn, "
 ");
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<div class="container my-5">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title text-center">Table Detail Transaksi</h2>
+                            <a type="button" class="btn btn-primary mb-3" href="transaksi.php">
+                                Back
+                            </a>
+                            <h3>Daftar Produk</h3>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Kode Produk</th>
+                                            <th>Nama Produk</th>
+                                            <th>Harga</th>
+                                            <th>Jumlah</th>
+                                            <th>Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $no = 1;
+                                            $grandTotal = 0;
+                                            while ($row = mysqli_fetch_assoc($queryDetail)) {
+                                                $subtotal = $row['harga'] * $row['quantity'];
+                                                $grandTotal += $subtotal;
+                                                echo "<tr>
+                                                        <td>{$no}</td>
+                                                        <td>{$row['kodeProduk']}</td>
+                                                        <td>{$row['namaProduk']}</td>
+                                                        <td>Rp " . number_format($row['harga'], 0, ',', '.') . "</td>
+                                                        <td>{$row['quantity']}</td>
+                                                        <td>Rp " . number_format($subtotal, 0, ',', '.') . "</td>
+                                                    </tr>";
+                                                $no++;
+                                            }
+                                        ?>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Detail Transaksi</title>
-    <style>
-        body {
-            font-family: Arial;
-            margin: 40px;
-            background-color: #f8f9fa;
-        }
+                                        <!-- Baris Total Harga -->
+                                        <tr class="table-light fw-bold">
+                                            <td colspan="5" class="text-end">Total Harga</td>
+                                            <td>Rp <?= number_format($transaksi['totalHarga'], 0, ',', '.') ?></td>
+                                        </tr>
 
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+                                        <!-- Baris Total Bayar -->
+                                        <tr class="table-light fw-bold">
+                                            <td colspan="5" class="text-end">Total Bayar</td>
+                                            <td>Rp <?= number_format($transaksi['totalBayar'], 0, ',', '.') ?></td>
+                                        </tr>
 
-        h2 {
-            border-bottom: 2px solid #007bff;
-            padding-bottom: 10px;
-        }
+                                        <!-- Baris Kembalian -->
+                                        <tr class="table-light fw-bold">
+                                            <td colspan="5" class="text-end">Kembalian</td>
+                                            <td>Rp
+                                                <?= number_format($transaksi['totalBayar'] - $transaksi['totalHarga'], 0, ',', '.') ?>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-
-        table,
-        th,
-        td {
-            border: 1px solid #dee2e6;
-        }
-
-        th,
-        td {
-            padding: 12px;
-            text-align: left;
-        }
-
-        .summary {
-            margin-top: 20px;
-        }
-
-        .summary div {
-            margin-bottom: 5px;
-        }
-
-        .status {
-            font-weight: bold;
-            color: green;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <h2>Detail Transaksi</h2>
-
-        <div class="summary">
-            <div><strong>ID Transaksi:</strong> <?= $transaksi['transaksiID'] ?></div>
-            <div><strong>Tanggal:</strong> <?= $transaksi['tglTransaksi'] ?></div>
-            <div><strong>Nama Kasir:</strong> <?= $transaksi['name'] ?></div>
-            <div><strong>Status:</strong> <span class="status"><?= $transaksi['statusTransaksi'] ?></span></div>
-        </div>
-
-        <h3>Daftar Produk</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Kode Produk</th>
-                    <th>Nama Produk</th>
-                    <th>Harga</th>
-                    <th>Jumlah</th>
-                    <th>Subtotal</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $no = 1;
-                $grandTotal = 0;
-                while ($row = mysqli_fetch_assoc($queryDetail)) {
-                    $subtotal = $row['harga'] * $row['quantity'];
-                    $grandTotal += $subtotal;
-                    echo "<tr>
-          <td>$no</td>
-          <td>{$row['kodeProduk']}</td>
-          <td>{$row['namaProduk']}</td>
-          <td>Rp " . number_format($row['harga'], 0, ',', '.') . "</td>
-          <td>{$row['quantity']}</td>
-          <td>Rp " . number_format($subtotal, 0, ',', '.') . "</td>
-        </tr>";
-                    $no++;
-                }
-                ?>
-
-                <a href="../transaksi.php" class="btn btn-primary" type="button">Hapus Data</a>
-            </tbody>
-        </table>
-
-        <div class="summary">
-            <div><strong>Total Harga:</strong> Rp<?= number_format($transaksi['totalHarga'], 0, ',', '.') ?></div>
-            <div><strong>Total Bayar:</strong> Rp<?= number_format($transaksi['totalBayar'], 0, ',', '.') ?></div>
-            <div><strong>Kembalian:</strong>
-                Rp<?= number_format($transaksi['totalBayar'] - $transaksi['totalHarga'], 0, ',', '.') ?></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</body>
-
-</html>
+</div>
