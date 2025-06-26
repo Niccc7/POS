@@ -63,4 +63,15 @@ function edit($data)
     return mysqli_affected_rows($conn);
 }
 
+function editStok($data) {
+    global $conn;
+
+    $id = $data['id'];
+    $jumlah = $data['jumlah'];
+
+    $query = "UPDATE stok SET jumlah = $jumlah WHERE produkID = $id";
+
+    return mysqli_query($conn, $query);
+}
+
 ?>

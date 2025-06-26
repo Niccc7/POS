@@ -122,3 +122,49 @@ $(document).ready(function () {
     });
   });
 });
+
+$(document).on("click", ".btn-edit-stok", function () {
+  let id = $(this).data("id");
+  let kode = $(this).data("kode-produk"); // pakai tanda minus
+  let nama = $(this).data("nama-produk");
+  let stok = $(this).data("stok");
+
+  console.log({ id, kode, nama, stok }); // Debug: cek apakah semua terbaca
+
+  $("#edit-id").val(id);
+  $("#edit-kode").val(kode);
+  $("#edit-nama").val(nama);
+  $("#edit-stok").val(stok);
+});
+
+$("#formEditStok").on("submit", function (e) {
+  e.preventDefault();
+  console.log("Data dikirim:", $(this).serialize());
+
+  $.ajax({
+    url: "stok/stock-edit.php",
+    method: "POST",
+    data: $(this).serialize() + "&edit=true",
+    success: function (response) {
+      const res = JSON.parse(response);
+
+      Swal.fire({
+        icon: res.status === "success" ? "success" : "error",
+        title: res.message,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      if (res.status === "success") {
+        $("#editData").modal("hide");
+        setTimeout(() => {
+          location.reload();
+        }, 1800);
+      } else {
+        setTimeout(() => {
+          $("#alert-container").html("");
+        }, 1800);
+      }
+    },
+  });
+});

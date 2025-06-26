@@ -26,24 +26,26 @@ $stok = query("SELECT * from stok left join produk on produk.produkID = stok.pro
                                     <tbody>
                                         <?php $no = 1; ?>
                                         <?php foreach ($stok as $s): ?>
-                                            <tr>
-                                                <td><?= $no ?></td>
-                                                <td><?= $s["kodeProduk"] ?></td>
-                                                <td><?= $s["namaProduk"] ?></td>
-                                                <td><?= $s["jumlah"] ?></td>
-                                                <td>
-                                                    <a href="#" class="btn-edit" data-id="<?= $s["produkID"]; ?>" name="edit"
-                                                        data-kode-produk="<?= htmlspecialchars($s["kodeProduk"]); ?>"
-                                                        data-nama-produk="<?= htmlspecialchars($s["namaProduk"]); ?>"
-                                                        data-harga="<?= $s["harga"]; ?>" data-bs-toggle="modal" data-bs-target="#editData"
-                                                        style="cursor: pointer; text-decoration: none;">
-                                                        <span class="badge text-bg-warning">
-                                                            <i class="bi bi-pencil-square"></i>
-                                                        </span>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <?php $no++ ?>
+                                        <tr>
+                                            <td><?= $no ?></td>
+                                            <td><?= $s["kodeProduk"] ?></td>
+                                            <td><?= $s["namaProduk"] ?></td>
+                                            <td><?= $s["jumlah"] ?></td>
+                                            <td>
+                                                <a href="#" class="btn-edit-stok" data-id="<?= $s["produkID"]; ?>"
+                                                    name="edit"
+                                                    data-kode-produk="<?= htmlspecialchars($s["kodeProduk"]); ?>"
+                                                    data-nama-produk="<?= htmlspecialchars($s["namaProduk"]); ?>"
+                                                    data-stok="<?= $s["jumlah"]; ?>" data-bs-toggle="modal"
+                                                    data-bs-target="#editDataStok"
+                                                    style="cursor: pointer; text-decoration: none;">
+                                                    <span class="badge text-bg-warning">
+                                                        <i class="bi bi-pencil-square"></i>
+                                                    </span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <?php $no++ ?>
                                         <?php endforeach ?>
                                     </tbody>
                                 </table>
@@ -56,7 +58,7 @@ $stok = query("SELECT * from stok left join produk on produk.produkID = stok.pro
     </div>
 
     <!-- Edit Data -->
-    <div class="modal fade" id="editData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editDataStok" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -64,7 +66,7 @@ $stok = query("SELECT * from stok left join produk on produk.produkID = stok.pro
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="formEdit" method="post">
+                    <form id="formEditStok" method="post">
                         <input type="hidden" name="id" id="edit-id">
 
                         <div class="mb-3">
@@ -77,7 +79,7 @@ $stok = query("SELECT * from stok left join produk on produk.produkID = stok.pro
                         </div>
                         <div class="mb-3">
                             <label for="stock" class="form-label">Stok</label>
-                            <input type="number" name="stock" class="form-control" id="edit-harga" required>
+                            <input type="number" name="jumlah" class="form-control" id="edit-stok" required>
                         </div>
                         <div class="me-5">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
