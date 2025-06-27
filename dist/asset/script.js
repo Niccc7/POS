@@ -125,11 +125,9 @@ $(document).ready(function () {
 
 $(document).on("click", ".btn-edit-stok", function () {
   let id = $(this).data("id");
-  let kode = $(this).data("kode-produk"); // pakai tanda minus
+  let kode = $(this).data("kode-produk"); 
   let nama = $(this).data("nama-produk");
   let stok = $(this).data("stok");
-
-  console.log({ id, kode, nama, stok }); // Debug: cek apakah semua terbaca
 
   $("#edit-id").val(id);
   $("#edit-kode").val(kode);
@@ -167,4 +165,48 @@ $("#formEditStok").on("submit", function (e) {
       }
     },
   });
+});
+
+$("#formTransaksi").on("submit", function (e) {
+    e.preventDefault();
+
+    $.ajax({
+        url: "transaksi/transaksi-store.php",
+        method: "POST",
+        data: $(this).serialize() + "&tambah=true",
+        success: function (response) {
+            try {
+                const res = JSON.parse(response);
+
+                Swal.fire({
+                    icon: res.status === "success" ? "success" : "error",
+                    title: res.message,
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+
+                if (res.status === "success") {
+                    $("#formTransaksi")[0].reset();
+
+                    setTimeout(() => {
+                        location.href = "transaksi.php";
+                    }, 1800);
+                }
+            } catch (err) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Terjadi kesalahan!",
+                    text: "Response tidak valid dari server.",
+                });
+                console.error("Invalid JSON:", response);
+            }
+        },
+        error: function (xhr, status, error) {
+            Swal.fire({
+                icon: "error",
+                title: "Gagal mengirim data",
+                text: error,
+            });
+        }
+    });
 });

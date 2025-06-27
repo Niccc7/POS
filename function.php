@@ -74,4 +74,63 @@ function editStok($data) {
     return mysqli_query($conn, $query);
 }
 
+function cleanNumber($num) {
+    return (int) str_replace(['.', ',', 'Rp', ' '], '', $num);
+}
+
+function sendJson($status, $message, $extra = []) {
+    return array_merge(['status' => $status, 'message' => $message], $extra);
+}
+
+function tambahTransaksi($data) {
+    global $conn;   
+
+    $produkIDs  = $data['produkID'] ?? [];
+    $quantities = $data['quantity'] ?? [];
+    $totalHarga = cleanNumber($data['totalHarga'] ?? 0);
+    $totalBayar = cleanNumber($data['totalBayar'] ?? 0);
+    $userID     = $_SESSION['userID'] ?? 1;
+
+    if (empty($produkIDs) || empty($quantities)) {
+        return sendJson('error', 'Data produk belum lengkap');
+    }
+
+    // Simpan header transaksi
+    $sql = "INSERT INTO transaksi (userID, tglTransaksi, totalHarga, totalBayar, statusTransaksi) 
+            VALUES ('$userID', NOW(), '$totalHarga', '$totalBayar', 'Done')";
+    if (!mysqli_query($conn, $sql)) {
+        return sendJson('error', 'Gagal menyimpan transaksi');
+    }
+
+    $transaksiID = mysqli_insert_id($conn);
+
+    // Simpan detail dan update stok
+    for ($i = 0; $i < count($produkIDs); $i++) {
+        $produkID = (int)$produkIDs[$i];
+        $qty      = (int)$quantities[$i];
+
+        $stokRes  = mysqli_query($conn, "SELECT jumlah FROM stok WHERE produkID = '$produkID'");
+        $hargaRes = mysqli_query($conn, "SELECT harga FROM produk WHERE produkID = '$produkID'");
+
+        if (!$stokRes || !$hargaRes) {
+            return sendJson('error', 'Produk tidak ditemukan');
+        }
+
+        $stok  = (int) mysqli_fetch_assoc($stokRes)['jumlah'];
+        $harga = (int) mysqli_fetch_assoc($hargaRes)['harga'];
+
+        if ($qty > $stok) {
+            return sendJson('error', "Stok tidak mencukupi untuk produk ID $produkID");
+        }
+
+        $sqlDetail = "INSERT INTO transaksi_detail (transaksiID, produkID, quantity) 
+                      VALUES ('$transaksiID', '$produkID', '$qty')";
+        mysqli_query($conn, $sqlDetail);
+
+        $sqlUpdateStok = "UPDATE stok SET jumlah = jumlah - $qty WHERE produkID = '$produkID'";
+        mysqli_query($conn, $sqlUpdateStok);
+    }
+
+    return sendJson('success', 'Transaksi berhasil disimpan', ['transaksiID' => $transaksiID]);
+}
 ?>

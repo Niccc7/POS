@@ -11,7 +11,7 @@ $stok = query("SELECT * from stok left join produk on produk.produkID = stok.pro
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Table Stock</h4>
+                            <h4 class="card-title text-center">Table Stock</h4>
                             <div class="table-responsive">
                                 <table class="table" id="tableProduct">
                                     <thead>

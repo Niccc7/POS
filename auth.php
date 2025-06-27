@@ -32,7 +32,7 @@ if ($user) {
             header("Location: dist/admin/index.php");
             exit;
         } elseif ($user['roles'] === 'kasir') {
-            header("Location: dashboard_kasir.php");
+            header("Location: dist/kasir/index.php");
             exit;
         } else {
             echo "Role tidak dikenali!";
