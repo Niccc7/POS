@@ -18,5 +18,23 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../assets/vendors/chart.js/chart.umd.js"></script>
 <script src="../asset/script.js"></script>
+<script>
+document.getElementById('logoutBtn').addEventListener('click', function() {
+    Swal.fire({
+        title: 'Yakin ingin logout?',
+        text: "Sesi Anda akan diakhiri.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#403E92',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Logout',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = '../../logout.php';
+        }
+    });
+});
+</script>
 
 </html>

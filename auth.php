@@ -2,16 +2,15 @@
 session_start();
 require_once "config.php";
 
-// Ambil input dari form login
 $username = $_POST['username'] ?? '';
 $password = $_POST['password'] ?? '';
 
-// Validasi input
+// Validasi
 if (empty($username) || empty($password)) {
-    die("Username dan password harus diisi!");
+    echo json_encode(['status' => 'error', 'message' => 'Username dan password harus diisi!']);
+    exit;
 }
 
-// Ambil user dari database berdasarkan username
 $sql = "SELECT * FROM user WHERE username = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $username);
@@ -20,27 +19,21 @@ $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
 if ($user) {
-    // Cocokkan password menggunakan password_verify
     if (password_verify($password, $user['password'])) {
-        // Login berhasil, buat session
         $_SESSION['userID'] = $user['userID'];
         $_SESSION['username'] = $user['username'];
         $_SESSION['roles'] = $user['roles'];
 
-        // Arahkan berdasarkan role
         if ($user['roles'] === 'admin') {
-            header("Location: dist/admin/index.php");
-            exit;
+            echo json_encode(['status' => 'success', 'redirect' => 'dist/admin/index.php']);
         } elseif ($user['roles'] === 'kasir') {
-            header("Location: dist/kasir/index.php");
-            exit;
+            echo json_encode(['status' => 'success', 'redirect' => 'dist/kasir/index.php']);
         } else {
-            echo "Role tidak dikenali!";
+            echo json_encode(['status' => 'error', 'message' => 'Role tidak dikenali.']);
         }
     } else {
-        echo "Password salah!";
+        echo json_encode(['status' => 'error', 'message' => 'Password salah!']);
     }
 } else {
-    echo "User tidak ditemukan!";
+    echo json_encode(['status' => 'error', 'message' => 'User tidak ditemukan!']);
 }
-?>

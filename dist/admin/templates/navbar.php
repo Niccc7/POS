@@ -62,10 +62,9 @@
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                     <a class="dropdown-item">
                         <i class="ti-settings text-primary"></i> Settings </a>
-                    <form action="../../logout.php" method="post">
-                        <button type="submit" class="dropdown-item"> <i class="ti-power-off text-primary"></i>
-                            Logout</button>
-                    </form>
+                    <button type="button" id="logoutBtn" class="dropdown-item">
+                        <i class="ti-power-off text-primary"></i> Logout
+                    </button>
                 </div>
             </li>
         </ul>
