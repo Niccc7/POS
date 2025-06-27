@@ -133,4 +133,15 @@ function tambahTransaksi($data) {
 
     return sendJson('success', 'Transaksi berhasil disimpan', ['transaksiID' => $transaksiID]);
 }
+
+function hapusTransaksi($id) {
+    global $conn;
+
+    $id = (int)$id; 
+
+    $hapusTransaksi = mysqli_query($conn, "DELETE FROM transaksi WHERE transaksiID = $id");
+
+    return $hapusTransaksi ? mysqli_affected_rows($conn) : 0;
+}
+
 ?>

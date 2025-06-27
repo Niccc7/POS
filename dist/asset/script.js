@@ -81,7 +81,7 @@ $("#formEdit").on("submit", function (e) {
   });
 });
 
-// Delete Data
+// Delete Data produk
 $(document).ready(function () {
   const table = $("#tableProduct").DataTable();
 
@@ -89,13 +89,13 @@ $(document).ready(function () {
     e.preventDefault();
     const url = $(this).attr("href");
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Anda Yakin ?",
+      text: "Setelah Menghapus Anda Tidak Dapat Memulihkannya kembali!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#403E92",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Ya, Hapus!",
     }).then((result) => {
       if (result.isConfirmed) {
         $.ajax({
@@ -209,4 +209,46 @@ $("#formTransaksi").on("submit", function (e) {
             });
         }
     });
+});
+
+// Delete Data transaksi
+$(document).ready(function () {
+  const table = $("#tableTr").DataTable();
+
+  $("#tableTr").on("click", "a.hapus", function (e) {
+    e.preventDefault();
+    const url = $(this).attr("href");
+    Swal.fire({
+      title: "Anda Yakin ?",
+      text: "Setelah Menghapus Anda Tidak Dapat Memulihkannya kembali!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#403E92",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Ya, Hapus!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: url,
+          method: "GET",
+          success: function (response) {
+            const res = JSON.parse(response);
+
+            Swal.fire({
+              icon: res.status === "success" ? "success" : "error",
+              title: res.message,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+
+            if (res.status === "success") {
+              setTimeout(() => {
+                location.reload();
+              }, 1800);
+            }
+          },
+        });
+      }
+    });
+  });
 });

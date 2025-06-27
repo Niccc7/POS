@@ -17,7 +17,7 @@ left join user on transaksi.userID = user.userID
                                 Add Data
                             </a>
                             <div class="table-responsive">
-                                <table class="table" id="tableProduct">
+                                <table class="table" id="tableTr">
                                     <thead>
                                         <tr>
                                             <th width="50">#</th>
@@ -43,7 +43,14 @@ left join user on transaksi.userID = user.userID
                                             <td>
                                                 <a href="transaksi.php?page=transaksi-detail&id=<?= $t['transaksiID']; ?>"
                                                     class="btn btn-info btn-sm">
-                                                    Detail
+                                                    <i class="bi bi-eye" style="font-size: 14px;"></i>
+                                                </a>
+                                                <a class="hapus"
+                                                    href="transaksi/transaksi-destroy.php?id=<?= $t["transaksiID"]; ?>"
+                                                    style="cursor: pointer;">
+                                                    <span class="badge text-bg-danger">
+                                                        <i class="bi bi-trash-fill" style="font-size: 14px;"></i>
+                                                    </span>
                                                 </a>
                                             </td>
                                         </tr>
