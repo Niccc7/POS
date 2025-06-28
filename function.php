@@ -74,10 +74,6 @@ function editStok($data) {
     return mysqli_query($conn, $query);
 }
 
-function cleanNumber($num) {
-    return (int) str_replace(['.', ',', 'Rp', ' '], '', $num);
-}
-
 function sendJson($status, $message, $extra = []) {
     return array_merge(['status' => $status, 'message' => $message], $extra);
 }
@@ -87,8 +83,8 @@ function tambahTransaksi($data) {
 
     $produkIDs  = $data['produkID'] ?? [];
     $quantities = $data['quantity'] ?? [];
-    $totalHarga = cleanNumber($data['totalHarga'] ?? 0);
-    $totalBayar = cleanNumber($data['totalBayar'] ?? 0);
+    $totalHarga = $data['totalHarga'] ?? 0;
+    $totalBayar = $data['totalBayar'] ?? 0;
     $userID     = $_SESSION['userID'] ?? 1;
 
     if (empty($produkIDs) || empty($quantities)) {
