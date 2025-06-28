@@ -56,37 +56,38 @@ $stok = query("SELECT * from stok left join produk on produk.produkID = stok.pro
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Edit Data -->
-    <div class="modal fade" id="editDataStok" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Data</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="formEditStok" method="post">
-                        <input type="hidden" name="id" id="edit-id">
+<!-- Edit Data -->
+<div class="modal fade" id="editDataStok" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Data</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formEditStok" method="post">
+                    <input type="hidden" name="id" id="edit-id">
 
-                        <div class="mb-3">
-                            <label for="kodeProduk" class="form-label">Kode Produk</label>
-                            <input type="text" class="form-control" id="edit-kode" disabled>
-                        </div>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Product Name</label>
-                            <input type="text" class="form-control" id="edit-nama" disabled>
-                        </div>
-                        <div class="mb-3">
-                            <label for="stock" class="form-label">Stok</label>
-                            <input type="number" name="jumlah" class="form-control" id="edit-stok" required>
-                        </div>
-                        <div class="me-5">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" name="edit" class="btn btn-primary">Simpan Perubahan</button>
-                        </div>
-                    </form>
-                </div>
+                    <div class="mb-3">
+                        <label for="kodeProduk" class="form-label">Kode Produk</label>
+                        <input type="text" class="form-control" id="edit-kode" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Product Name</label>
+                        <input type="text" class="form-control" id="edit-nama" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="stock" class="form-label">Stok</label>
+                        <input type="number" name="jumlah" class="form-control" id="edit-stok" required>
+                    </div>
+                    <div class="me-5">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="edit" class="btn btn-primary">Simpan Perubahan</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>

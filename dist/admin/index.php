@@ -35,44 +35,50 @@ $totalStok = mysqli_fetch_assoc($queryStok)['total'] ?? 0;
 
                             <!-- Total Transaksi -->
                             <div class="col-md-4 mb-3">
-                                <div class="card shadow-sm p-3 bg-white rounded">
-                                    <div class="d-flex align-items-center">
-                                        <i class="menu-icon mdi mdi-cash-register text-primary"
-                                            style="font-size: 28px;"></i>
-                                        <div class="ms-3">
-                                            <div class="fw-bold">Total Transaksi</div>
-                                            <div class="fs-4"><?= $totalTransaksi ?></div>
+                                <a href="transaksi.php" style="text-decoration: none; color: inherit;">
+                                    <div class="card shadow-sm p-3 bg-white rounded">
+                                        <div class="d-flex align-items-center">
+                                            <i class="menu-icon mdi mdi-cash-register text-primary"
+                                                style="font-size: 28px;"></i>
+                                            <div class="ms-3">
+                                                <div class="fw-bold">Total Transaksi</div>
+                                                <div class="fs-4"><?= $totalTransaksi ?></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
 
                             <!-- Total Produk -->
                             <div class="col-md-4 mb-3">
-                                <div class="card shadow-sm p-3 bg-white rounded">
-                                    <div class="d-flex align-items-center">
-                                        <i class="menu-icon mdi mdi-cube-outline text-info"
-                                            style="font-size: 28px;"></i>
-                                        <div class="ms-3">
-                                            <div class="fw-bold">Jumlah Produk</div>
-                                            <div class="fs-4"><?= $totalProduk ?></div>
+                                <a href="product.php" style="text-decoration: none; color: inherit;">
+                                    <div class="card shadow-sm p-3 bg-white rounded">
+                                        <div class="d-flex align-items-center">
+                                            <i class="menu-icon mdi mdi-cube-outline text-info"
+                                                style="font-size: 28px;"></i>
+                                            <div class="ms-3">
+                                                <div class="fw-bold">Jumlah Produk</div>
+                                                <div class="fs-4"><?= $totalProduk ?></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
 
                             <!-- Total Stok -->
                             <div class="col-md-4 mb-3">
-                                <div class="card shadow-sm p-3 bg-white rounded">
-                                    <div class="d-flex align-items-center">
-                                        <i class="menu-icon mdi mdi-package-variant-closed text-warning"
-                                            style="font-size: 28px;"></i>
-                                        <div class="ms-3">
-                                            <div class="fw-bold">Total Stok</div>
-                                            <div class="fs-4"><?= $totalStok ?></div>
+                                <a href="stock.php" style="text-decoration: none; color: inherit;">
+                                    <div class="card shadow-sm p-3 bg-white rounded">
+                                        <div class="d-flex align-items-center">
+                                            <i class="menu-icon mdi mdi-package-variant-closed text-warning"
+                                                style="font-size: 28px;"></i>
+                                            <div class="ms-3">
+                                                <div class="fw-bold">Total Stok</div>
+                                                <div class="fs-4"><?= $totalStok ?></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
 

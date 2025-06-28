@@ -1,13 +1,15 @@
-<?php 
-$currentFile = basename($_SERVER['PHP_SELF']);
-?>
-
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item">
             <a class="nav-link <?= $currentFile == 'index.php' ? 'active' : '' ?>" href="index.php">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <?= $currentFile == 'admin.php' ? 'active' : '' ?>" href="admin.php">
+                <i class="menu-icon mdi mdi-account"></i>
+                <span class="menu-title">Admin</span>
             </a>
         </li>
         <li class="nav-item">

@@ -1,7 +1,3 @@
-<?php 
-$currentFile = basename($_SERVER['PHP_SELF']);
-?>
-
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item">
