@@ -52,11 +52,6 @@ if (isset($_SESSION['roles']) && !isset($_GET['status'])) {
                                     <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
                                         type="submit">SIGN IN</button>
                                 </div>
-                                <div class="my-2 d-flex justify-content-between align-items-center">
-                                    <div class="form-check">
-                                        <div class="text-center mt-4 font-weight-light"> Don't have an account? <a
-                                                href="register.php" class="text-primary">Create</a>
-                                        </div>
                             </form>
                         </div>
                     </div>

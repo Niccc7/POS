@@ -4,55 +4,45 @@ $stok = query("SELECT * from stok left join produk on produk.produkID = stok.pro
 ");
 ?>
 
-<div class="container my-5">
-    <div class="main-panel">
-        <div class="content-wrapper">
-            <div class="row">
-                <div class="col-lg-12 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title text-center">Table Stock</h4>
-                            <div class="table-responsive">
-                                <table class="table" id="tableProduct">
-                                    <thead>
-                                        <tr>
-                                            <th width="50">#</th>
-                                            <th width="200">Kode Produk</th>
-                                            <th width="150">Nama Produk</th>
-                                            <th width="50">Stock</th>
-                                            <th width="100">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $no = 1; ?>
-                                        <?php foreach ($stok as $s): ?>
-                                        <tr>
-                                            <td><?= $no ?></td>
-                                            <td><?= $s["kodeProduk"] ?></td>
-                                            <td><?= $s["namaProduk"] ?></td>
-                                            <td><?= $s["jumlah"] ?></td>
-                                            <td>
-                                                <a href="#" class="btn-edit-stok" data-id="<?= $s["produkID"]; ?>"
-                                                    name="edit"
-                                                    data-kode-produk="<?= htmlspecialchars($s["kodeProduk"]); ?>"
-                                                    data-nama-produk="<?= htmlspecialchars($s["namaProduk"]); ?>"
-                                                    data-stok="<?= $s["jumlah"]; ?>" data-bs-toggle="modal"
-                                                    data-bs-target="#editDataStok"
-                                                    style="cursor: pointer; text-decoration: none;">
-                                                    <span class="badge text-bg-warning">
-                                                        <i class="bi bi-pencil-square"></i>
-                                                    </span>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <?php $no++ ?>
-                                        <?php endforeach ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="container-fluid py-4">
+    <div class="card w-100">
+        <div class="card-body">
+            <h4 class="card-title text-center">Table Stock</h4>
+            <div class="table-responsive">
+                <table class="table" id="tableProduct">
+                    <thead>
+                        <tr>
+                            <th width="50">#</th>
+                            <th width="200">Kode Produk</th>
+                            <th width="150">Nama Produk</th>
+                            <th width="50">Stock</th>
+                            <th width="100">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $no = 1; ?>
+                        <?php foreach ($stok as $s): ?>
+                        <tr>
+                            <td><?= $no ?></td>
+                            <td><?= $s["kodeProduk"] ?></td>
+                            <td><?= $s["namaProduk"] ?></td>
+                            <td><?= $s["jumlah"] ?></td>
+                            <td>
+                                <a href="#" class="btn-edit-stok" data-id="<?= $s["produkID"]; ?>" name="edit"
+                                    data-kode-produk="<?= htmlspecialchars($s["kodeProduk"]); ?>"
+                                    data-nama-produk="<?= htmlspecialchars($s["namaProduk"]); ?>"
+                                    data-stok="<?= $s["jumlah"]; ?>" data-bs-toggle="modal"
+                                    data-bs-target="#editDataStok" style="cursor: pointer; text-decoration: none;">
+                                    <span class="badge text-bg-warning">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </span>
+                                </a>
+                            </td>
+                        </tr>
+                        <?php $no++ ?>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

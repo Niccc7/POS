@@ -7,9 +7,9 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link <?= $currentFile == 'admin.php' ? 'active' : '' ?>" href="admin.php">
+            <a class="nav-link <?= $currentFile == 'kasir.php' ? 'active' : '' ?>" href="kasir.php">
                 <i class="menu-icon mdi mdi-account"></i>
-                <span class="menu-title">Admin</span>
+                <span class="menu-title">Kasir</span>
             </a>
         </li>
         <li class="nav-item">

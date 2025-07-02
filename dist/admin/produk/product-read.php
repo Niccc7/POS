@@ -14,68 +14,57 @@ $product = query("SELECT
 ");
 ?>
 
-<div class="container my-5">
-    <div class="main-panel">
-        <div class="content-wrapper">
-            <div class="row">
-                <div class="col-lg-12 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title text-center">Table Product</h4>
-                            <a type="button" class="btn btn-primary mb-3" data-bs-toggle="modal"
-                                data-bs-target="#addData" name="tambah">
-                                Add Data
-                            </a>
-                            <div class="table-responsive">
-                                <table class="table" id="tableProduct">
-                                    <thead>
-                                        <tr>
-                                            <th width="50">#</th>
-                                            <th width="200">Kode Produk</th>
-                                            <th width="150">Name</th>
-                                            <th width="150">Price</th>
-                                            <th width="50">Stock</th>
-                                            <th width="100">Action</th>
-                                        </tr>
-                                    <tbody>
-                                        <?php $no = 1; ?>
-                                        <?php foreach ($product as $prd): ?>
-                                        <tr>
-                                            <td><?= $no ?></td>
-                                            <td><?= $prd["kodeProduk"] ?></td>
-                                            <td><?= $prd["namaproduk"] ?></td>
-                                            <td><?= $prd["harga"] ?></td>
-                                            <td><?= $prd["jumlah"] ?></td>
-                                            <td>
-                                                <a href="#" class="btn-edit" data-id="<?= $prd["produkID"]; ?>"
-                                                    name="edit"
-                                                    data-kode-produk="<?= htmlspecialchars($prd["kodeProduk"]); ?>"
-                                                    data-nama-produk="<?= htmlspecialchars($prd["namaproduk"]); ?>"
-                                                    data-harga="<?= $prd["harga"]; ?>" data-bs-toggle="modal"
-                                                    data-bs-target="#editData"
-                                                    style="cursor: pointer; text-decoration: none;">
-                                                    <span class="badge text-bg-warning">
-                                                        <i class="bi bi-pencil-square"></i>
-                                                    </span>
-                                                </a>
-                                                <a class="hapus"
-                                                    href="produk/product-delete.php?id=<?= $prd["produkID"]; ?>"
-                                                    style="cursor: pointer;">
-                                                    <span class="badge text-bg-danger">
-                                                        <i class="bi bi-trash-fill"></i>
-                                                    </span>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <?php $no++ ?>
-                                        <?php endforeach ?>
-                                        </thead>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="container-fluid py-4">
+    <div class="card w-100">
+        <div class="card-body">
+            <h4 class="card-title text-center">Table Product</h4>
+            <a type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addData"
+                name="tambah">
+                Add Data
+            </a>
+            <div class="table-responsive">
+                <table class="table" id="tableProduct">
+                    <thead>
+                        <tr>
+                            <th width="50">#</th>
+                            <th width="200">Kode Produk</th>
+                            <th width="150">Name</th>
+                            <th width="150">Price</th>
+                            <th width="50">Stock</th>
+                            <th width="100">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $no = 1; ?>
+                        <?php foreach ($product as $prd): ?>
+                        <tr>
+                            <td><?= $no ?></td>
+                            <td><?= $prd["kodeProduk"] ?></td>
+                            <td><?= $prd["namaproduk"] ?></td>
+                            <td><?= $prd["harga"] ?></td>
+                            <td><?= $prd["jumlah"] ?></td>
+                            <td>
+                                <a href="#" class="btn-edit" data-id="<?= $prd["produkID"]; ?>" name="edit"
+                                    data-kode-produk="<?= htmlspecialchars($prd["kodeProduk"]); ?>"
+                                    data-nama-produk="<?= htmlspecialchars($prd["namaproduk"]); ?>"
+                                    data-harga="<?= $prd["harga"]; ?>" data-bs-toggle="modal" data-bs-target="#editData"
+                                    style="cursor: pointer; text-decoration: none;">
+                                    <span class="badge text-bg-warning">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </span>
+                                </a>
+                                <a class="hapus" href="produk/product-delete.php?id=<?= $prd["produkID"]; ?>"
+                                    style="cursor: pointer;">
+                                    <span class="badge text-bg-danger">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </span>
+                                </a>
+                            </td>
+                        </tr>
+                        <?php $no++ ?>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
