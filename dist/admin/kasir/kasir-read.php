@@ -28,13 +28,13 @@ $users = query("SELECT * FROM user WHERE userID != $loginUserID");
                             </p>
                             <p><strong>Role:</strong> <?= htmlspecialchars($user['roles']) ?></p>
 
-                            <div class="d-flex justify-content-between">
-                                <a href="edit_user.php?id=<?= $user['userID'] ?>"
-                                    class="btn btn-sm btn-outline-warning">
-                                    <i class="mdi mdi-pencil"></i> Edit
+                            <div class="d-flex justify-content-end ">
+                                <a href="#" class="btn btn-sm btn-outline-warning btn-reset-pass"
+                                    data-id="<?= $user['userID'] ?>">
+                                    <i class="mdi mdi-lock-reset"></i> Reset Password
                                 </a>
-                                <a href="hapus_user.php?id=<?= $user['userID'] ?>" class="btn btn-sm btn-outline-danger"
-                                    onclick="return confirm('Yakin ingin menghapus?')">
+                                <a href="kasir/kasir-delete.php?id=<?= $user["userID"]; ?>"
+                                    class="btn btn-sm btn-outline-danger btn-delete-user">
                                     <i class="mdi mdi-delete"></i> Delete
                                 </a>
                             </div>
@@ -56,7 +56,7 @@ $users = query("SELECT * FROM user WHERE userID != $loginUserID");
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="formTambah" method="post">
+                <form id="formTambahKasir">
                     <div class="mb-3">
                         <label for="kodeProduk" class="form-label">Name</label>
                         <input type="text" name="name" class="form-control" id="name" required>

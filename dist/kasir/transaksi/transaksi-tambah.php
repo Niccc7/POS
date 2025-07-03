@@ -141,7 +141,7 @@ document.querySelector('input[name="searchID"]').addEventListener('keydown', fun
         const id = this.value.trim();
 
         if (id !== '') {
-            fetch('product-search.php', {
+            fetch('../../product-search.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'

@@ -252,3 +252,135 @@ $(document).ready(function () {
     });
   });
 });
+
+
+$("#formTambahKasir").on("submit", function (e) {
+  e.preventDefault();
+
+  $.ajax({
+    url: "kasir/kasir-create.php",
+    method: "POST",
+    data: $(this).serialize() + "&tambah=true",
+    success: function (response) {
+      try {
+        const res = JSON.parse(response);
+
+        Swal.fire({
+          icon: res.status === "success" ? "success" : "error",
+          title: res.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+        if (res.status === "success") {
+          $("#formTambahKasir")[0].reset();
+
+          setTimeout(() => {
+            location.href = "kasir.php";
+          }, 1800);
+        }
+      } catch (err) {
+        Swal.fire({
+          icon: "error",
+          title: "Terjadi kesalahan!",
+          text: "Response tidak valid dari server.",
+        });
+        console.error("Invalid JSON:", response);
+      }
+    },
+    error: function (xhr, status, error) {
+      Swal.fire({
+        icon: "error",
+        title: "Gagal mengirim data",
+        text: error,
+      });
+    },
+  });
+});
+
+// delete kasir
+$(document).on("click", ".btn-delete-user", function (e) {
+  e.preventDefault();
+
+  const url = $(this).attr("href");
+
+  Swal.fire({
+    title: "Yakin ingin menghapus?",
+    text: "Data tidak bisa dikembalikan!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#403E92",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Ya, Hapus!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: url,
+        method: "GET",
+        success: function (response) {
+          let res;
+          try {
+            res = JSON.parse(response);
+          } catch (e) {
+            return Swal.fire("Error", "Respons tidak valid dari server", "error");
+          }
+
+          Swal.fire({
+            icon: res.status === "success" ? "success" : "error",
+            title: res.message,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
+          if (res.status === "success") {
+            setTimeout(() => {
+              location.reload();
+            }, 1600);
+          }
+        },
+        error: function () {
+          Swal.fire("Error", "Gagal menghubungi server", "error");
+        },
+      });
+    }
+  });
+});
+
+$(document).on("click", ".btn-reset-pass", function (e) {
+  e.preventDefault();
+
+  const id = $(this).data("id");
+
+  Swal.fire({
+    title: "Reset Password?",
+    text: "Password akan direset ke default (12345)",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#403E92",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Ya, Reset!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: "kasir/kasir-resetpass.php",
+        type: "POST",
+        data: {
+          id: id,
+          reset: true, 
+        },
+        dataType: "json",
+        success: function (res) {
+          Swal.fire({
+            icon: res.status === "success" ? "success" : "error",
+            title: res.message,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        },
+        error: function () {
+          Swal.fire("Error", "Gagal menghubungi server", "error");
+        },
+      });
+    }
+  });
+});

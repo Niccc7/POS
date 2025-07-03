@@ -140,4 +140,60 @@ function hapusTransaksi($id) {
     return $hapusTransaksi ? mysqli_affected_rows($conn) : 0;
 }
 
+function tambahKasir($data) {
+    global $conn;
+
+    $name     = trim($data['name'] ?? '');
+    $username = trim($data['username'] ?? '');
+    $roles    = 'kasir';
+    $password = '12345';
+
+    if ($name === '' || $username === '') {
+        return sendJson('error', 'Nama dan Username wajib diisi');
+    }
+
+    $cek = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
+    if (mysqli_num_rows($cek) > 0) {
+        return sendJson('error', 'Username sudah digunakan');
+    }
+
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+    $sql = "INSERT INTO user (name, username, password, roles) 
+            VALUES ('$name', '$username', '$passwordHash', '$roles')";
+
+    if (mysqli_query($conn, $sql)) {
+        return sendJson('success', 'User berhasil ditambahkan');
+    } else {
+        return sendJson('error', 'Gagal menambahkan user');
+    }
+}
+
+function hapusKasir($id) {
+    global $conn;
+
+    $id = (int)$id; 
+
+    $hapusKasir = mysqli_query($conn, "DELETE FROM user WHERE userID = $id");
+
+    return $hapusKasir ? mysqli_affected_rows($conn) : 0;
+}
+
+function resetPasswordKasir($data) {
+    global $conn;
+
+    $id = (int)($data['id'] ?? 0);
+    if ($id <= 0) {
+        return 0;
+    }
+
+    $defaultPassword = '12345';
+    $passwordHash = password_hash($defaultPassword, PASSWORD_DEFAULT);
+
+    $sql = "UPDATE user SET password = '$passwordHash' WHERE userID = $id";
+    mysqli_query($conn, $sql);
+
+    return mysqli_affected_rows($conn);
+}
+
 ?>
