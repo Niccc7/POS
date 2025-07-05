@@ -29,7 +29,8 @@ $queryDetail = mysqli_query($conn, "
                     <div class="card">
                         <div class="card-body">
                             <h2 class="card-title text-center">Table Detail Transaksi</h2>
-                            <a type="button" class="btn btn-primary mb-3" href="transaksi.php">
+                            <a type="button" class="btn mb-3" style="background-color: #217753; color:white;"
+                                href="transaksi.php">
                                 Back
                             </a>
                             <h3>Daftar Produk</h3>

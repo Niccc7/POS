@@ -39,7 +39,7 @@ left join user on transaksi.userID = user.userID
                             <td><?= $t["name"] ?></td>
                             <td>
                                 <a href="transaksi.php?page=transaksi-detail&id=<?= $t['transaksiID']; ?>"
-                                    class="btn btn-info btn-sm">
+                                    class="btn btn-sm" style="background-color: #217753; color:white;">
                                     <i class="bi bi-eye" style="font-size: 14px;"></i>
                                 </a>
                                 <a class="hapus" href="transaksi/transaksi-destroy.php?id=<?= $t["transaksiID"]; ?>"

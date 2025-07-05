@@ -6,11 +6,11 @@ left join user on transaksi.userID = user.userID
 ?>
 
 <div class="container-fluid py-4">
-    <a href="transaksi.php" style="background-color: #217753; color:white;" class="btn mb-3">Back</a>
     <div class="card w-100">
         <div class="card-body">
             <h4 class="card-title text-center">Table Transaksi</h4>
-            <a type="button" class="btn btn-primary mb-3" href="transaksi.php?page=transaksi-tambah">
+            <a type="button" class="btn mb-3" style="background-color: #217753; color:white;"
+                href="transaksi.php?page=transaksi-tambah">
                 Add Data
             </a>
             <div class="table-responsive">
@@ -39,8 +39,8 @@ left join user on transaksi.userID = user.userID
                             <td><?= $t["name"] ?></td>
                             <td>
                                 <a href="transaksi.php?page=transaksi-detail&id=<?= $t['transaksiID']; ?>"
-                                    class="btn btn-info btn-sm">
-                                    Detail
+                                    class="btn btn-sm" style="background-color: #217753; color:white;">
+                                    <i class="bi bi-eye" style="font-size: 14px;"></i>
                                 </a>
                             </td>
                         </tr>
