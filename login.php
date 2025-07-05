@@ -5,7 +5,7 @@ if (isset($_SESSION['roles']) && !isset($_GET['status'])) {
     if ($_SESSION['roles'] === 'admin') {
         header("Location: dist/admin/index.php");
     } elseif ($_SESSION['roles'] === 'kasir') {
-        header("Location: kasir/dashboard_kasir.php");
+        header("Location: dist/kasir/index.php");
     }
     exit;
 }
@@ -17,7 +17,7 @@ if (isset($_SESSION['roles']) && !isset($_GET['status'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>POS - Login</title>
+    <title>CoreSell - Login</title>
     <link rel="stylesheet" href="dist/assets/vendors/feather/feather.css">
     <link rel="stylesheet" href="dist/assets/vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" href="dist/assets/vendors/css/vendor.bundle.base.css">

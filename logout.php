@@ -9,7 +9,7 @@ session_destroy();
 
 <head>
     <meta charset="UTF-8">
-    <title>Logout</title>
+    <title>Logout - CoreSell</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
