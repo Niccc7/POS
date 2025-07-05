@@ -58,7 +58,7 @@ $produkList = query("SELECT * from stok left join produk on produk.produkID = st
                         <button type="button" id="btn-hapus-semua" class="btn btn-danger">
                             Hapus Semua
                         </button>
-                        <button type="submit" name="tambah" class="btn" style="background-color: #403E92; color:white;">
+                        <button type="submit" name="tambah" class="btn" style="background-color: #217753; color:white;">
                             Simpan Transaksi
                         </button>
                     </div>
@@ -85,7 +85,7 @@ document.getElementById("btn-hapus-semua").addEventListener("click", function() 
         text: 'Semua produk akan dihapus dari daftar!',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#403E92',
+        confirmButtonColor: '#217753',
         cancelButtonColor: '#aaa',
         confirmButtonText: 'Ya, Hapus Semua'
     }).then((result) => {
@@ -131,7 +131,7 @@ document.addEventListener('keydown', function(e) {
         updateSubtotal(row);
         updateTotal();
 
-        e.target.blur(); // atau comment jika ingin tetap fokus
+        e.target.blur();
     }
 });
 
@@ -153,7 +153,6 @@ document.querySelector('input[name="searchID"]').addEventListener('keydown', fun
                     if (response.status === 'success') {
                         const produk = response.data;
 
-                        // Tambah ke tabel atau form
                         tambahProdukKeTabel(produk);
                         this.value = '';
                     } else {

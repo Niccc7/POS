@@ -6,6 +6,7 @@ left join user on transaksi.userID = user.userID
 ?>
 
 <div class="container-fluid py-4">
+    <a href="transaksi.php" style="background-color: #217753; color:white;" class="btn mb-3">Back</a>
     <div class="card w-100">
         <div class="card-body">
             <h4 class="card-title text-center">Table Transaksi</h4>

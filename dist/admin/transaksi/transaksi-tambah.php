@@ -1,7 +1,9 @@
 <?php
 require_once '../../config.php';
 $produkList = query("SELECT * from stok left join produk on produk.produkID = stok.produkID");
-?><div class="container-fluid my-5 px-4">
+?>
+<div class="container-fluid my-5 px-4">
+    <a href="transaksi.php" style="background-color: #217753; color:white;" class="btn mb-3">Back</a>
     <div class="main-panel">
         <div class="card w-100">
             <div class="card-body">
@@ -58,7 +60,7 @@ $produkList = query("SELECT * from stok left join produk on produk.produkID = st
                         <button type="button" id="btn-hapus-semua" class="btn btn-danger">
                             Hapus Semua
                         </button>
-                        <button type="submit" name="tambah" class="btn" style="background-color: #403E92; color:white;">
+                        <button type="submit" name="tambah" class="btn" style="background-color: #217753; color:white;">
                             Simpan Transaksi
                         </button>
                     </div>

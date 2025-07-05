@@ -93,7 +93,7 @@ $(document).ready(function () {
       text: "Setelah Menghapus Anda Tidak Dapat Memulihkannya kembali!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#403E92",
+      confirmButtonColor: "#217753",
       cancelButtonColor: "#d33",
       confirmButtonText: "Ya, Hapus!",
     }).then((result) => {
@@ -223,7 +223,7 @@ $(document).ready(function () {
       text: "Setelah Menghapus Anda Tidak Dapat Memulihkannya kembali!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#403E92",
+      confirmButtonColor: "#217753",
       cancelButtonColor: "#d33",
       confirmButtonText: "Ya, Hapus!",
     }).then((result) => {
@@ -309,7 +309,7 @@ $(document).on("click", ".btn-delete-user", function (e) {
     text: "Data tidak bisa dikembalikan!",
     icon: "warning",
     showCancelButton: true,
-    confirmButtonColor: "#403E92",
+    confirmButtonColor: "#217753",
     cancelButtonColor: "#d33",
     confirmButtonText: "Ya, Hapus!",
   }).then((result) => {

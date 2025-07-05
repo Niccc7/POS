@@ -9,7 +9,8 @@ left join user on transaksi.userID = user.userID
     <div class="card w-100">
         <div class="card-body">
             <h4 class="card-title text-center">Table Transaksi</h4>
-            <a type="button" class="btn btn-primary mb-3" href="transaksi.php?page=transaksi-tambah">
+            <a type="button" class="btn mb-3" href="transaksi.php?page=transaksi-tambah"
+                style="background-color: #217753; color:white;">
                 Add Data
             </a>
             <div class="table-responsive">

@@ -11,8 +11,8 @@ $users = query("SELECT * FROM user WHERE userID != $loginUserID");
             <h4 class="text-center mb-4">List Kasir</h4>
 
             <div class="d-flex justify-content-start mb-3">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addData"
-                    name="tambah">
+                <button type="button" class="btn" style="background-color: #217753; color:white;" data-bs-toggle="modal"
+                    data-bs-target="#addData" name="tambah">
                     <i class="mdi mdi-plus"></i> Add Data
                 </button>
             </div>
@@ -28,7 +28,7 @@ $users = query("SELECT * FROM user WHERE userID != $loginUserID");
                             </p>
                             <p><strong>Role:</strong> <?= htmlspecialchars($user['roles']) ?></p>
 
-                            <div class="d-flex justify-content-end ">
+                            <div class="d-flex justify-content-end">
                                 <a href="#" class="btn btn-sm btn-outline-warning btn-reset-pass"
                                     data-id="<?= $user['userID'] ?>">
                                     <i class="mdi mdi-lock-reset"></i> Reset Password
@@ -52,7 +52,7 @@ $users = query("SELECT * FROM user WHERE userID != $loginUserID");
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Data</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Data Kasir</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -67,7 +67,8 @@ $users = query("SELECT * FROM user WHERE userID != $loginUserID");
                     </div>
                     <div class="me-5">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="tambah" class="btn btn-primary">Tambah</button>
+                        <button type="submit" name="tambah" class="btn"
+                            style="background-color: #217753; color:white;">Tambah</button>
                     </div>
                 </form>
             </div>

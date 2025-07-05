@@ -18,8 +18,8 @@ $product = query("SELECT
     <div class="card w-100">
         <div class="card-body">
             <h4 class="card-title text-center">Table Product</h4>
-            <a type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addData"
-                name="tambah">
+            <a type="button" class="btn mb-3" data-bs-toggle="modal" data-bs-target="#addData"
+                style="background-color: #217753; color:white;" name="tambah">
                 Add Data
             </a>
             <div class="table-responsive">
@@ -94,7 +94,8 @@ $product = query("SELECT
                     </div>
                     <div class="me-5">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="tambah" class="btn btn-primary">Tambah</button>
+                        <button type="submit" name="tambah" class="btn"
+                            style="background-color: #217753; color:white;">Tambah</button>
                     </div>
                 </form>
             </div>
@@ -128,7 +129,8 @@ $product = query("SELECT
                     </div>
                     <div class="me-5">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="edit" class="btn btn-primary">Simpan Perubahan</button>
+                        <button type="submit" name="edit" class="btn"
+                            style="background-color: #217753; color:white;">Simpan Perubahan</button>
                     </div>
                 </form>
             </div>

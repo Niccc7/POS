@@ -25,7 +25,7 @@ document.getElementById('logoutBtn').addEventListener('click', function() {
         text: "Sesi Anda akan diakhiri.",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#403E92',
+        confirmButtonColor: '#217753',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Ya, Logout',
         cancelButtonText: 'Batal'
