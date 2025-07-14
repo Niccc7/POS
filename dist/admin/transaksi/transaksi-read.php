@@ -14,16 +14,16 @@ left join user on transaksi.userID = user.userID
                 Add Data
             </a>
             <div class="table-responsive">
-                <table class="table" id="tableTr">
+                <table class="table w-100 text-nowrap" id="tableTr" style="min-width: 900px;">
                     <thead>
                         <tr>
-                            <th width="50">#</th>
-                            <th width="80">Tanggal Transaksi</th>
-                            <th width="50">Total Harga</th>
-                            <th width="50">Total Bayar</th>
-                            <th width="50">Kembalian</th>
-                            <th width="50">Kasir</th>
-                            <th width="100">Action</th>
+                            <th width="100">#</th>
+                            <th width="120">Tanggal Transaksi</th>
+                            <th width="120">Total Harga</th>
+                            <th width="120">Total Bayar</th>
+                            <th width="100">Kembalian</th>
+                            <th width="100">Kasir</th>
+                            <th width="150">Action</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -82,11 +82,13 @@ $product = query("SELECT
                 <form id="formTambah" method="post">
                     <div class="mb-3">
                         <label for="kodeProduk" class="form-label">Kode Produk</label>
-                        <input type="text" name="kode_produk" class="form-control" id="kode_produk" required>
+                        <input type="text" name="kode_produk" class="form-control" id="kode_produk" required
+                            autocomplete="off">
                     </div>
                     <div class="mb-3">
                         <label for="name" class="form-label">Product Name</label>
-                        <input type="text" name="nama_produk" class="form-control" id="nama_produk" required>
+                        <input type="text" name="nama_produk" class="form-control" id="nama_produk" required
+                            autocomplete="off">
                     </div>
                     <div class="mb-3">
                         <label for="harga" class="form-label">Price</label>
@@ -117,11 +119,13 @@ $product = query("SELECT
 
                     <div class="mb-3">
                         <label for="kodeProduk" class="form-label">Kode Produk</label>
-                        <input type="text" name="kode_produk" class="form-control" id="edit-kode" required>
+                        <input type="text" name="kode_produk" class="form-control" id="edit-kode" required
+                            autocomplete="off">
                     </div>
                     <div class="mb-3">
                         <label for="name" class="form-label">Product Name</label>
-                        <input type="text" name="nama_produk" class="form-control" id="edit-nama" required>
+                        <input type="text" name="nama_produk" class="form-control" id="edit-nama" required
+                            autocomplete="off">
                     </div>
                     <div class="mb-3">
                         <label for="harga" class="form-label">Price</label>

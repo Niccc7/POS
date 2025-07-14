@@ -14,7 +14,7 @@ left join user on transaksi.userID = user.userID
                 Add Data
             </a>
             <div class="table-responsive">
-                <table class="table" id="tableProduct">
+                <table class="table w-100 text-nowrap" id="tableTr" style="min-width: 900px;">
                     <thead>
                         <tr>
                             <th width="50">#</th>

@@ -59,11 +59,12 @@ $users = query("SELECT * FROM user WHERE userID != $loginUserID");
                 <form id="formTambahKasir">
                     <div class="mb-3">
                         <label for="kodeProduk" class="form-label">Name</label>
-                        <input type="text" name="name" class="form-control" id="name" required>
+                        <input type="text" name="name" class="form-control" id="name" required autocomplete="off">
                     </div>
                     <div class="mb-3">
                         <label for="name" class="form-label">Username</label>
-                        <input type="text" name="username" class="form-control" id="username" required>
+                        <input type="text" name="username" class="form-control" id="username" required
+                            autocomplete="off">
                     </div>
                     <div class="me-5">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -1,70 +1,70 @@
 <?php
 require_once '../../config.php';
 $produkList = query("SELECT * from stok left join produk on produk.produkID = stok.produkID");
-?><div class="container-fluid my-5 px-4">
+?>
+<div class="container-fluid my-5 px-4">
     <a href="transaksi.php" style="background-color: #217753; color:white;" class="btn mb-3">Back</a>
-    <div class="main-panel">
-        <div class="card w-100">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h3 class="card-title m-0">Tambah Transaksi</h3>
-                    <div class="text-muted" id="tanggal-transaksi"></div>
-                </div>
 
-                <div class="mb-3">
-                    <label for="searchID">Masukkan ID Produk</label>
-                    <input type="text" name="searchID" id="searchID" class="form-control"
-                        placeholder="Contoh: 101 atau kodeProduk">
-                </div>
-
-                <form id="formTransaksi">
-                    <div class="table-responsive mb-3">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Produk</th>
-                                    <th>Harga</th>
-                                    <th>Qty</th>
-                                    <th>Subtotal</th>
-                                    <th>Opsi</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tabel-produk">
-                                <!-- Baris produk ditambahkan dengan JS -->
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="mb-2 text-end">
-                        <strong>Total Item: <span id="total-item">0</span></strong>
-                    </div>
-                    <div class="mb-2 text-end">
-                        <strong>Total Harga: <span id="total-harga">Rp. 0</span></strong>
-                        <input type="hidden" name="totalHarga" id="totalHarga">
-                    </div>
-
-                    <div class="row justify-content-end mb-3">
-                        <div class="col-md-3">
-                            <label>Total Bayar</label>
-                            <input type="number" name="totalBayar" class="form-control" required>
-                        </div>
-                        <div class="col-md-3">
-                            <label>Kembalian</label>
-                            <input type="number" name="kembalian" id="kembalian" class="form-control" readonly>
-                        </div>
-                    </div>
-
-                    <div class="text-end">
-                        <button type="button" id="btn-hapus-semua" class="btn btn-danger">
-                            Hapus Semua
-                        </button>
-                        <button type="submit" name="tambah" class="btn" style="background-color: #217753; color:white;">
-                            Simpan Transaksi
-                        </button>
-                    </div>
-                </form>
+    <div class="card w-100">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="card-title m-0">Tambah Transaksi</h3>
+                <div class="text-muted" id="tanggal-transaksi"></div>
             </div>
+
+            <div class="mb-3">
+                <label for="searchID">Masukkan ID Produk</label>
+                <input type="text" name="searchID" id="searchID" class="form-control"
+                    placeholder="Contoh: ID Produk atau Kode Produk" autocomplete="off">
+            </div>
+
+            <form id="formTransaksi">
+                <div class="table-responsive mb-3">
+                    <table class="table table-bordered text-nowrap" style="min-width: 900px;">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Produk</th>
+                                <th>Harga</th>
+                                <th>Qty</th>
+                                <th>Subtotal</th>
+                                <th>Opsi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabel-produk">
+                            <!-- Baris produk ditambahkan dengan JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mb-2 text-end">
+                    <strong>Total Item: <span id="total-item">0</span></strong>
+                </div>
+                <div class="mb-2 text-end">
+                    <strong>Total Harga: <span id="total-harga">Rp. 0</span></strong>
+                    <input type="hidden" name="totalHarga" id="totalHarga">
+                </div>
+
+                <div class="row justify-content-end mb-3">
+                    <div class="col-md-3">
+                        <label>Total Bayar</label>
+                        <input type="number" name="totalBayar" class="form-control" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Kembalian</label>
+                        <input type="number" name="kembalian" id="kembalian" class="form-control" readonly>
+                    </div>
+                </div>
+
+                <div class="text-end">
+                    <button type="button" id="btn-hapus-semua" class="btn btn-danger">
+                        Hapus Semua
+                    </button>
+                    <button type="submit" name="tambah" class="btn" style="background-color: #217753; color:white;">
+                        Simpan Transaksi
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -349,7 +349,7 @@ document.addEventListener('click', function(e) {
             text: "Produk akan dihapus dari daftar!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#403E92',
+            confirmButtonColor: '#217753',
             cancelButtonColor: '#aaa',
             confirmButtonText: 'Ya, Hapus'
         }).then((result) => {
