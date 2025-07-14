@@ -153,15 +153,78 @@ document.querySelector('input[name="searchID"]').addEventListener('keydown', fun
                 .then(response => {
                     if (response.status === 'success') {
                         const produk = response.data;
+                        const hargaFormat = parseInt(produk.harga).toLocaleString('id-ID');
 
-                        tambahProdukKeTabel(produk);
-                        this.value = '';
+                        const existingRow = [...document.querySelectorAll('#tabel-produk tr')].find(row =>
+                            row.dataset.id === produk.produkID);
+
+                        // Jika produk sudah ada → tambahkan qty saja (tanpa alert)
+                        if (existingRow) {
+                            const qtyInput = existingRow.querySelector('.qty-input');
+                            const currentQty = parseInt(qtyInput.value);
+                            const stok = parseInt(qtyInput.dataset.stok);
+
+                            if (currentQty < stok) {
+                                qtyInput.value = currentQty + 1;
+                                updateSubtotal(existingRow);
+                                updateTotal();
+                            } else {
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Stok Habis',
+                                    text: `Stok hanya tersedia ${stok} item`
+                                });
+                            }
+
+                            document.querySelector('input[name="searchID"]').value = '';
+                            document.querySelector('input[name="searchID"]').focus();
+                            return;
+                        }
+
+                        // Produk belum ada → tampilkan preview Swal
+                        if (parseInt(produk.jumlah) <= 0) {
+                            Swal.fire({
+                                title: produk.namaProduk,
+                                html: `
+                    <p><strong>Harga:</strong> Rp ${hargaFormat}</p>
+                    <p><strong>Stok tersedia:</strong> ${produk.jumlah}</p>
+                    <p class="text-danger">Stok produk habis, tidak bisa ditambahkan.</p>
+                `,
+                                icon: 'warning',
+                                confirmButtonText: 'OK',
+                                confirmButtonColor: '#aaa'
+                            }).then(() => {
+                                document.querySelector('input[name="searchID"]').focus();
+                            });
+                        } else {
+                            Swal.fire({
+                                title: produk.namaProduk,
+                                html: `
+                    <p><strong>Harga:</strong> Rp ${hargaFormat}</p>
+                    <p><strong>Stok tersedia:</strong> ${produk.jumlah}</p>
+                `,
+                                icon: 'info',
+                                showCancelButton: true,
+                                confirmButtonText: 'Tambah Produk',
+                                cancelButtonText: 'Batal',
+                                confirmButtonColor: '#217753',
+                                cancelButtonColor: '#aaa'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    tambahProdukKeTabel(produk);
+                                    document.querySelector('input[name="searchID"]').value = '';
+                                }
+                                document.querySelector('input[name="searchID"]').focus();
+                            });
+                        }
                     } else {
                         Swal.fire({
                             icon: 'error',
                             title: 'Produk tidak ditemukan',
                             text: response.message,
                             confirmButtonText: 'OK'
+                        }).then(() => {
+                            document.querySelector('input[name="searchID"]').focus();
                         });
                     }
                 })
