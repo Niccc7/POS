@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 25, 2025 at 02:54 PM
+-- Generation Time: Jul 15, 2025 at 04:14 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -39,10 +39,19 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`produkID`, `kodeProduk`, `namaProduk`, `harga`) VALUES
-(2, 'PR-001', 'Mizone', 7000),
-(4, 'PR-011', 'Pucuk', 5000),
-(6, 'PR-002', 'Indomie', 3500),
-(9, 'PR-003', 'Nestle', 3000);
+(2, '8992752112013', 'Mizone', 7000),
+(4, '011234567890123', 'Pucuk', 5000),
+(6, '545784921556', 'Indomie Goreng', 3500),
+(9, '545784121556', 'Nestle', 3000),
+(11, '(01)1234567890123', 'Sunlight', 5000),
+(12, '054881003995', 'Fruit Tea Selection', 45000),
+(13, '8998866203920', 'Milku Original', 4000),
+(26, '013', 'p2', 1000),
+(28, '012', 'P1', 1000),
+(29, '014', 'msmdmsm', 1000),
+(34, '019', '1000', 1000),
+(35, '015', 'kakask', 1000),
+(37, '200', '212ikas', 1000);
 
 -- --------------------------------------------------------
 
@@ -61,10 +70,19 @@ CREATE TABLE `stok` (
 --
 
 INSERT INTO `stok` (`stokID`, `produkID`, `jumlah`) VALUES
-(1, 2, 10),
-(2, 4, 5),
-(3, 6, 5),
-(5, 9, 0);
+(1, 2, 197),
+(2, 4, 12),
+(3, 6, 8),
+(5, 9, 48),
+(7, 11, 36),
+(8, 12, 12),
+(9, 13, 6),
+(11, 26, 0),
+(13, 28, 0),
+(14, 29, 0),
+(15, 34, 0),
+(16, 35, 0),
+(17, 37, 0);
 
 -- --------------------------------------------------------
 
@@ -86,7 +104,10 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`transaksiID`, `userID`, `tglTransaksi`, `totalHarga`, `totalBayar`, `statusTransaksi`) VALUES
-(1, 2, '2025-06-19 00:00:00', 24000, 50000, 'Done');
+(4, 1, '2025-06-27 15:14:53', 12000, 20000, 'Done'),
+(6, 1, '2025-06-28 15:12:44', 10000, 20000, 'Done'),
+(7, 1, '2025-07-02 23:27:34', 19000, 20000, 'Done'),
+(11, 1, '2025-07-14 11:55:50', 68500, 70000, 'Done');
 
 -- --------------------------------------------------------
 
@@ -106,9 +127,15 @@ CREATE TABLE `transaksi_detail` (
 --
 
 INSERT INTO `transaksi_detail` (`trDetailID`, `transaksiID`, `produkID`, `quantity`) VALUES
-(1, 1, 2, 1),
-(2, 1, 6, 1),
-(3, 1, 4, 2);
+(5, 4, 2, 1),
+(6, 4, 4, 1),
+(8, 6, 2, 1),
+(9, 6, 9, 1),
+(10, 7, 2, 2),
+(11, 7, 4, 1),
+(16, 11, 2, 3),
+(17, 11, 4, 6),
+(18, 11, 6, 5);
 
 -- --------------------------------------------------------
 
@@ -129,8 +156,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userID`, `name`, `username`, `password`, `roles`) VALUES
-(1, 'Administrator', 'admin1', '$2y$10$zAkLpZFM0vEkM4Vu0eLVH.7wUjWQ54Vyw2o3jkX1.Aojwjo9slGSu', 'admin'),
-(2, 'kasir 1', 'niccc', '$2y$10$luqAk5zo8HShszVSW/3kp.BXmlw2fxU016ggYledPOZF5hqRmZRl.', 'kasir');
+(1, 'Administrator', 'admin', '$2y$10$zAkLpZFM0vEkM4Vu0eLVH.7wUjWQ54Vyw2o3jkX1.Aojwjo9slGSu', 'admin'),
+(5, 'kasir', 'kasir1', '$2y$10$BqAnBWS3BCFVJdMh0PrdpuTXZnjAANeIpsYAXl0IWE4oKYX53ly8W', 'kasir');
 
 --
 -- Indexes for dumped tables
@@ -140,7 +167,8 @@ INSERT INTO `user` (`userID`, `name`, `username`, `password`, `roles`) VALUES
 -- Indexes for table `produk`
 --
 ALTER TABLE `produk`
-  ADD PRIMARY KEY (`produkID`);
+  ADD PRIMARY KEY (`produkID`),
+  ADD UNIQUE KEY `kodeProduk` (`kodeProduk`);
 
 --
 -- Indexes for table `stok`
@@ -178,31 +206,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `produkID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `produkID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `stok`
 --
 ALTER TABLE `stok`
-  MODIFY `stokID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `stokID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `transaksiID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `transaksiID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `transaksi_detail`
 --
 ALTER TABLE `transaksi_detail`
-  MODIFY `trDetailID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `trDetailID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `userID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
